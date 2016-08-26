@@ -7,13 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pateo.cloud.common.Code;
 import com.pateo.cloud.common.ResultData;
-import com.pateo.cloud.domain.City;
-import com.pateo.cloud.dto.DistrictDto;
+import com.pateo.cloud.domain.bean.City;
 import com.pateo.cloud.dto.ProvinceDto;
 import com.pateo.cloud.service.DistrictService;
 /**

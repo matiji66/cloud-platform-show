@@ -1,4 +1,4 @@
-package com.pateo.cloud.domain;
+package com.pateo.cloud.domain.bean;
 
 public class City {
 

@@ -1,26 +1,13 @@
 package com.pateo.cloud.domain;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
-//@Table(name="cs_district")
-@Table(name="Province")
-public class Province  implements Serializable {
+@Table(name="cps_province")
+public class Province  {
 
- 
-	private static final long serialVersionUID = 1L;
-	public Province() {
-	}
-
-	public Province(int id,String name) {
-		this.id =id;
-		this.name = name;
-	}
-	
 	@Id
 	@Column(name = "ID")
 	private int id;
@@ -39,11 +26,5 @@ public class Province  implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	@Override
-	public String toString() {
-		return "Province [id=" + id + ", name=" + name + "]";
-	}
-	
-	
+ 
 }

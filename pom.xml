@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.pateo</groupId>
-  <artifactId>cloudplatform-show</artifactId>
+  <artifactId>cloud-platform-show</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>cloudplatform-show</name>
+  <name>cloud-platform-show</name>
   <url>http://maven.apache.org</url>
 <parent>
 		<groupId>org.springframework.boot</groupId>

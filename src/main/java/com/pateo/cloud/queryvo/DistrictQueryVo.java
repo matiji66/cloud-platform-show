@@ -13,6 +13,7 @@ public class DistrictQueryVo implements Serializable{
 	private int upperId;
 	private int level;
 	private String name;
+	
 	public int getId() {
 		return id;
 	}

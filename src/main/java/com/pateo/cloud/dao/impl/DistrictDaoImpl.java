@@ -34,7 +34,7 @@ public class DistrictDaoImpl implements DistrictDao {
 	@Override
 	public List<District> getListByUpperId(int upperId) {
 
-		return (List<District>) getSession().createQuery("from District where upperId =:upperId").setParameter("upperId", upperId).list();
+		return (List<District>) getSession().createQuery(" from District where upperId =:upperId").setParameter("upperId", upperId).list();
 	}
 	@SuppressWarnings("unchecked")
 	@Override

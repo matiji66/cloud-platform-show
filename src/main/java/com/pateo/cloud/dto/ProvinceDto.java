@@ -3,8 +3,8 @@ package com.pateo.cloud.dto;
 
 public class ProvinceDto {
 
-	private int id;
 	private String name;
+	private int id;
 	 
 	public int getId() {
 		return id;

@@ -7,20 +7,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pateo.cloud.common.Code;
 import com.pateo.cloud.common.ResultData;
 import com.pateo.cloud.domain.City;
+import com.pateo.cloud.domain.bean.ProvinceAndSum;
+import com.pateo.cloud.dto.CityDto;
+import com.pateo.cloud.dto.ProvinceAndSumDto;
 import com.pateo.cloud.dto.ProvinceDto;
+import com.pateo.cloud.service.CityService;
 import com.pateo.cloud.service.DistrictService;
 /**
  */
 
 @Controller
-@RequestMapping(value = "/dist")
-public class DistrictController {
+@RequestMapping(value = "/obdser")
+public class CityController {
 	 
+	@Autowired
+	private CityService cityService;
+ 	
 	@Autowired
 	private DistrictService districtService;
 	 
@@ -36,27 +44,18 @@ public class DistrictController {
 		return  new ResultData(list,Code.STATUS_SUCCESS,"success");
 	}
 	
-	 
 	/**
-	 * to get all city List
+	 * to get dist info by name
+	 * @param name
 	 * @return
 	 */
-	@RequestMapping(value = "/cityList", method = RequestMethod.GET )
+	@RequestMapping(value = "/obd", method = RequestMethod.GET )
 	@ResponseBody
-	public ResultData getCityList() {
-	
-		List<City> list = new ArrayList<City>();
-//		list.add(new City(1, "上海"));
-//		list.add(new City(2, "北京"));
-//		list.add(new City(3, "广州"));
-//		list.add(new City(4, "广西"));
-//		list.add(new City(5, "合肥"));
-//		list.add(new City(6, "厦门"));
-//		
-		
-		return  new ResultData(list,Code.STATUS_SUCCESS,"success");
+	public ResultData getCityByName(@RequestParam(value = "obdid" ,required = true) String obdid) {
+		List<ProvinceAndSumDto> districtDto = cityService.getProvinceAndSumVByObd(obdid) ;
+		return  new ResultData(districtDto,Code.STATUS_SUCCESS,"success");
 	}
-	 
+
 }
 
 //

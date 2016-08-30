@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="cps_district")
+@Table(name="output_province_city")
 public class District implements Serializable {
 	/**
 	 * 

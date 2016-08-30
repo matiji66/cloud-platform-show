@@ -20,7 +20,7 @@ USE `obd_message`;
 DROP TABLE IF EXISTS `cps_province`;
 CREATE TABLE IF NOT EXISTS `cps_province` (
   `id` int(11) NOT NULL default '0',
-  `name` varchar(50) default NULL,
+  `name` varchar(40) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

@@ -19,6 +19,8 @@ public interface DistrictDao {
 	
 	// test  
 	List<Province> getProvinceListByLevel(int level);
+	
+	
 	List<District> getListByLevel(int level);
 	
 	District select(int id);

@@ -9,8 +9,8 @@ import javax.persistence.Id;
 
 
 @Entity
-@Table(name="output_province_city")
-public class ProvinceAndCity  {
+@Table(name="output_province_city_realtime")
+public class ProvinceAndCityRealtime  {
 
 //	"province"	"city"	"device"	"value"
 //	"北京"	"北京"	"obd"	"87"

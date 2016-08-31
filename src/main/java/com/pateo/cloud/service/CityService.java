@@ -11,7 +11,12 @@ public interface CityService {
 	
 //	List<ProvinceDto> getProvinceList();
  	
-	List<ProvinceAndSumDto> getProvinceAndSumVByObd(String device);
+	List<ProvinceAndSumDto> getProvinceAndSumByObd(String device);
+	
+	List<ProvinceAndSumDto> getCityAndSumByObd(String device);
+	List<ProvinceAndSumDto> getTimeAndCntByObd(String device);
+
+
 //	List<DistrictDto> getCityList();
 //
 //	List<DistrictDto> getListByCityId(int cityId, String areaName);

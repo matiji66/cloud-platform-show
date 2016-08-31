@@ -1,4 +1,7 @@
-package com.pateo.cloud.domain.bean;
+package com.pateo.cloud.domain;
+
+import javax.persistence.Column;
+import javax.persistence.Id;
 
 public class ProvinceAndSum {
 
@@ -24,8 +27,14 @@ public class ProvinceAndSum {
 	public void setSum(int sum) {
 		this.sum = sum;
 	}
-
+	@Override
+	public String toString() {
+		return "ProvinceAndSum [province=" + province + ", sum=" + sum + "]";
+	}
+	@Id
+	@Column(name = "province")
 	private String  province ;
+	@Column(name = "sum")
 	private int sum ;
 
 }

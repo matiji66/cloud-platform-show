@@ -1,6 +1,6 @@
 package com.pateo.cloud.assmbler;
 
-import com.pateo.cloud.domain.bean.ProvinceAndSum;
+import com.pateo.cloud.domain.ProvinceAndSum;
 import com.pateo.cloud.dto.ProvinceAndSumDto;
 
 public class ProvinceAndSumAssmbler {

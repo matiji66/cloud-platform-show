@@ -1,5 +1,8 @@
 package com.pateo.cloud.dao.impl;
 
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -10,11 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.pateo.cloud.dao.CityDao;
-import com.pateo.cloud.dao.DistrictDao;
-import com.pateo.cloud.domain.District;
-import com.pateo.cloud.domain.Province;
-import com.pateo.cloud.domain.bean.ProvinceAndSum;
-import com.pateo.cloud.queryvo.DistrictQueryVo;
+import com.pateo.cloud.domain.ProvinceAndCityRealtime;
+import com.pateo.cloud.domain.ProvinceAndSum;
 @Repository
 @Transactional
 public class CityDaoImpl implements CityDao {
@@ -25,27 +25,7 @@ public class CityDaoImpl implements CityDao {
 	private Session getSession() {
 		   return _sessionFactory.getCurrentSession();
 	}
- 
-//	
-//	@SuppressWarnings("unchecked")
-//	@Override
-//	public List<Province> getProvinceListByLevel(int level) {
-//		
-//		List<Province> list = getSession().createQuery(" from Province ").list();
-//		for (Province province : list) {
-//			System.out.println(" get from createQuery " + province);
-//		}
-//		return (List<Province>) list;
-//	}
-//	public String getNameById(int id) {
-//		
-//		District district = (District) (getSession().createQuery(" from District where id =:id").setParameter("id", id).uniqueResult());
-//		if (district!=null) {
-//			return district.getName();
-//		}else {
-//			return null;
-//		}
-//	}
+  
 	@Override
 	public List<Object> getIllegalList(String statustype, String carNo,
 			int startPosition, int count) {
@@ -55,18 +35,57 @@ public class CityDaoImpl implements CityDao {
 		return  list;
 	}
 	
-//	select province ,sum(value) from output_province_city 
-//	where device='obd'
-//	group by province
+//	select province ,sum(value) from output_province_city  where device='obd' 	group by province
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ProvinceAndSum> getProvinceAndSumByDevice(String device) {
+		StringBuffer sb = new StringBuffer(" select province,sum(value) as device  from ProvinceAndCity where device ='"+device+"' group by province");
+		
+		List<Object> citys =  (List<Object>)getSession().createSQLQuery(sb.toString()).list();
+//		.setResultTransformer(Transformers.aliasToBean(ProvinceAndCity.class))
+		List<ProvinceAndSum> list = new ArrayList<>();
+	 
+		for (Object object : citys) {
+			Object [] objects = (Object [])object ; 
+	        list.add(new ProvinceAndSum((String)objects[0] ,Integer.parseInt(((BigDecimal) objects[1]).toString()) ));
+		}
+		System.out.println(" province  --------------" + citys.size());
+		return list;
+	}
+
+//	select city,sum(value) from output_province_city_realtime  where device='obd' group by province
+	@Override
+	public List<ProvinceAndSum> getCityAndSumByDevice(String device) {
+		 
+		StringBuffer sb = new StringBuffer(" select city,sum(value) as sum from output_province_city_realtime where device ='"+device+"' group by province");
+		
+		@SuppressWarnings("unchecked")
+		List<Object> citys =  (List<Object>)getSession().createSQLQuery(sb.toString()).list();
+		List<ProvinceAndSum> list = new ArrayList<>();
+	 
+		for (Object object : citys) {			
+			Object [] objects = (Object [])object ; 
+	        list.add(new ProvinceAndSum((String)objects[0] ,Integer.parseInt(((BigDecimal) objects[1]).toString()) ));
+		}
+		System.out.println(" city --------------" + citys.size());
+		return list;
+	}
 
 	@Override
-	public List<ProvinceAndSum> getByDevice(String device) {
-		StringBuffer sb = new StringBuffer(" select province,sum(value) from ProvinceAndCity where device ='"+device+"' group by province");
-		List<ProvinceAndSum> district =  getSession().createSQLQuery(sb.toString()).list();
+	public List<ProvinceAndSum> getTimeAndCntByDevice(String device) {
+//		select TIME,cnt from output_active_cnt where device='obd' order by time desc limit 24
+		StringBuffer sb = new StringBuffer(" select time,cnt from output_active_cnt where device ='"+device+"' order by time desc limit 24 ");
 		
-		
-//		ProvinceAndSum district =  (ProvinceAndSum) (getSession().createQuery(" province ,sum(value) from District where device =:device").setParameter("device", device).uniqueResult());
-		return district;
+		@SuppressWarnings("unchecked")
+		List<Object> citys =  (List<Object>)getSession().createSQLQuery(sb.toString()).list();
+		List<ProvinceAndSum> list = new ArrayList<>();
+		for (Object object : citys) {			
+			Object [] objects = (Object [])object ; 
+	        list.add(new ProvinceAndSum(((Timestamp)objects[0] ).toString(),Integer.parseInt(((Integer ) objects[1]).toString()) ));
+		}
+		System.out.println(" city --------------" + citys.size());
+		return list;
 	}
 	
 	

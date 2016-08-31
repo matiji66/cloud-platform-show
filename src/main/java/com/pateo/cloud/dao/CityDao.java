@@ -2,7 +2,7 @@ package com.pateo.cloud.dao;
 
 import java.util.List;
 
-import com.pateo.cloud.domain.bean.ProvinceAndSum;
+import com.pateo.cloud.domain.ProvinceAndSum;
 
 
 
@@ -21,8 +21,10 @@ public interface CityDao {
 //	String getUpperNameById(int id);
 //	List<City> getListByName(String name);
 
-	List<ProvinceAndSum> getByDevice(String device);
-	public List<Object> getIllegalList(String statustype, String carNo,int startPosition, int count) ;
-	
+	List<ProvinceAndSum> getProvinceAndSumByDevice(String device);
+	List<ProvinceAndSum> getCityAndSumByDevice(String device);
+	List<ProvinceAndSum> getTimeAndCntByDevice(String device);
 
+	public List<Object> getIllegalList(String statustype, String carNo,int startPosition, int count) ;
+	 
 }

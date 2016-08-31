@@ -6,12 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pateo.cloud.assmbler.DistrictAssmbler;
 import com.pateo.cloud.assmbler.ProvinceAndSumAssmbler;
 import com.pateo.cloud.dao.CityDao;
-import com.pateo.cloud.domain.District;
-import com.pateo.cloud.domain.bean.ProvinceAndSum;
-import com.pateo.cloud.dto.DistrictDto;
+import com.pateo.cloud.domain.ProvinceAndCity;
+import com.pateo.cloud.domain.ProvinceAndSum;
 import com.pateo.cloud.dto.ProvinceAndSumDto;
 import com.pateo.cloud.service.CityService;
 /**
@@ -32,19 +30,38 @@ public class CityServiceImpl implements CityService{
 //	return distList;
 	
 	@Override
-	public List<ProvinceAndSumDto> getProvinceAndSumVByObd(String device) {
-		List<ProvinceAndSum> list = districtDao.getByDevice(device);
+	public List<ProvinceAndSumDto> getProvinceAndSumByObd(String device) {
+		List<ProvinceAndSum> list = districtDao.getProvinceAndSumByDevice(device);
 		List<ProvinceAndSumDto> distList = new ArrayList<>();
 		if (list.size() >0) {
-			
 			for (ProvinceAndSum provinceAndSum  : list) {
-
 				distList.add(ProvinceAndSumAssmbler.provinceAndSumToProvinceAndSumDto(provinceAndSum));
-				
-//				ProvinceAndSumDto districtToDistrictDto = ProvinceAndSumAssmbler.provinceAndSumToProvinceAndSumDto(provinceAndSum) ;
-			}
+ 			}
 		}
- 		
+		return distList;
+	}
+
+	@Override
+	public List<ProvinceAndSumDto> getCityAndSumByObd(String device) {
+		List<ProvinceAndSum> list = districtDao.getCityAndSumByDevice(device);
+		List<ProvinceAndSumDto> distList = new ArrayList<>();
+		if (list.size() >0) {
+			for (ProvinceAndSum provinceAndSum  : list) {
+				distList.add(ProvinceAndSumAssmbler.provinceAndSumToProvinceAndSumDto(provinceAndSum));
+ 			}
+		}
+		return distList;
+	}
+
+	@Override
+	public List<ProvinceAndSumDto> getTimeAndCntByObd(String device) {
+		List<ProvinceAndSum> list = districtDao.getTimeAndCntByDevice(device);
+		List<ProvinceAndSumDto> distList = new ArrayList<>();
+		if (list.size() >0) {
+			for (ProvinceAndSum provinceAndSum  : list) {
+				distList.add(ProvinceAndSumAssmbler.provinceAndSumToProvinceAndSumDto(provinceAndSum));
+ 			}
+		}
 		return distList;
 	}
 

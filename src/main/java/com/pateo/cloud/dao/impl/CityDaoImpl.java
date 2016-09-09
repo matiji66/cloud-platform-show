@@ -87,6 +87,19 @@ public class CityDaoImpl implements CityDao {
 		System.out.println(" city --------------" + citys.size());
 		return list;
 	}
-	
-	
+	@Override
+	public List<ProvinceAndSum> getPeriodCount() {
+		
+		StringBuffer sb = new StringBuffer(" select * from obd_timeseq_count where  timeseq >  from_unixtime(unix_timestamp() - 3600) ");
+		@SuppressWarnings("unchecked")
+		List<Object> citys =  (List<Object>)getSession().createSQLQuery(sb.toString()).list();
+		List<ProvinceAndSum> list = new ArrayList<>();
+		for (Object object : citys) {			
+			Object [] objects = (Object [])object ; 
+	        list.add(new ProvinceAndSum(((String)objects[0] ).toString(),Integer.parseInt(((Integer ) objects[1]).toString()) ));
+		}
+		System.out.println(" city --------------" + citys.size());
+		return list;
+
+	}
 }

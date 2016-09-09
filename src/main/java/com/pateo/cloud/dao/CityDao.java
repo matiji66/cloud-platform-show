@@ -4,11 +4,6 @@ import java.util.List;
 
 import com.pateo.cloud.domain.ProvinceAndSum;
 
-
-
-
- 
-
 public interface CityDao {
 
 //	List<City> getListByExample(CityQueryVo queryVo);
@@ -24,7 +19,7 @@ public interface CityDao {
 	List<ProvinceAndSum> getProvinceAndSumByDevice(String device);
 	List<ProvinceAndSum> getCityAndSumByDevice(String device);
 	List<ProvinceAndSum> getTimeAndCntByDevice(String device);
-
+	List<ProvinceAndSum> getPeriodCount();
 	public List<Object> getIllegalList(String statustype, String carNo,int startPosition, int count) ;
 	 
 }

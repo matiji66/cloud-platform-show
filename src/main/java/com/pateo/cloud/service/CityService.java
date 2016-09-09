@@ -15,7 +15,7 @@ public interface CityService {
 	
 	List<ProvinceAndSumDto> getCityAndSumByObd(String device);
 	List<ProvinceAndSumDto> getTimeAndCntByObd(String device);
-
+	List<ProvinceAndSumDto> getPeriodCount();
 
 //	List<DistrictDto> getCityList();
 //

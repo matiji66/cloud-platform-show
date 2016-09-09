@@ -82,6 +82,19 @@ public class CityController {
 		return  new ResultData(districtDto,Code.STATUS_SUCCESS,"success");
 	}
 	
+	/**
+	 * select TIME,cnt from output_active_cnt where device='obd' order by time desc limit 24
+	 * @param obdid
+	 * @return
+	 */
+	@RequestMapping(value = "/currcnt", method = RequestMethod.GET )
+	@ResponseBody
+	public ResultData getPeriodCount( ) {
+		List<ProvinceAndSumDto> districtDto = cityService.getPeriodCount() ;
+		return  new ResultData(districtDto,Code.STATUS_SUCCESS,"success");
+	}
+	
+	
 }
 
 //

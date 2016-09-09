@@ -65,6 +65,18 @@ public class CityServiceImpl implements CityService{
 		return distList;
 	}
 
+	@Override
+	public List<ProvinceAndSumDto> getPeriodCount() {
+
+		List<ProvinceAndSum> list = districtDao.getPeriodCount( );
+		List<ProvinceAndSumDto> distList = new ArrayList<>();
+		if (list.size() >0) {
+			for (ProvinceAndSum provinceAndSum  : list) {
+				distList.add(ProvinceAndSumAssmbler.provinceAndSumToProvinceAndSumDto(provinceAndSum));
+ 			}
+		}
+		return distList;
+	}
 	  
 
 }
